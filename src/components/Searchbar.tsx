@@ -63,6 +63,10 @@ type Props = React.ComponentPropsWithRef<typeof TextInput> & {
    * Custom icon for clear button, default will be icon close
    */
   clearIcon?: IconSource;
+  /**
+   * Determines which keyboard to open, e.g.numeric.
+   */
+   keyboardType?: string;
 };
 
 type TextInputHandles = Pick<
@@ -114,6 +118,7 @@ const Searchbar = React.forwardRef<TextInputHandles, Props>(
       style,
       theme,
       value,
+      keyboardType = 'default',
       ...rest
     }: Props,
     ref
@@ -197,6 +202,7 @@ const Searchbar = React.forwardRef<TextInputHandles, Props>(
           underlineColorAndroid="transparent"
           returnKeyType="search"
           keyboardAppearance={dark ? 'dark' : 'light'}
+          keyboardType={keyboardType}
           // @ts-expect-error We keep old a11y props for backwards compat with old RN versions
           accessibilityTraits="search"
           accessibilityRole="search"
